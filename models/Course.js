@@ -37,3 +37,5 @@ Course.add({
 })
 
 Course.register()
+
+module.exports = Course

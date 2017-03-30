@@ -1,7 +1,9 @@
-const { Router } = require('express')
+import { Router } from 'express'
 
-const users = require('./users')
+import users from './users'
+import courses from './courses'
 
 
 module.exports = Router()
   .use('/users', users)
+  .use('/courses', courses)

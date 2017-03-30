@@ -1,13 +1,13 @@
-const { Router } = require('express')
-
-const User = require('../../models/User')
+import Course from '../../../models/Course'
 
 
-const DEFAULT_LIMIT = 50
+const DEFAULT_LIMIT = 20
 
-module.exports = Router()
-  .get('/', validateRoot, fetchUsers)
-  .get('/:id', validateFetchById, fetchUserById)
+module.exports = (app) => {
+  app
+    .get('/', validateRoot, fetch)
+    .get('/:id', validateFetchById, fetchUserById)
+}
 
 function validateRoot(req, res, next) {
   req.checkQuery('limit')
@@ -18,23 +18,22 @@ function validateRoot(req, res, next) {
   if (errors) {
     return next({ status: 400, errors })
   }
-
   req.sanitizeQuery('limit').toInt()
   return next()
 }
 
-async function fetchUsers(req, res, next) {
+async function fetch(req, res, next) {
   const { limit } = req.query
-  let users
+  let courses
   try {
-    users = await User.model.find()
+    courses = await Course.model.find()
       .limit(limit || DEFAULT_LIMIT)
       .exec()
   } catch (err) {
     return next(err)
   }
 
-  return res.json({ result: users })
+  return res.json({ result: courses })
 }
 
 function validateFetchById(req, res, next) {
@@ -50,15 +49,15 @@ function validateFetchById(req, res, next) {
 async function fetchUserById(req, res, next) {
   const { id } = req.params
 
-  let user
+  let course
   try {
-    user = await User.model.findById(id).exec()
+    course = await Course.model.findById(id).exec()
   } catch (err) {
     return next(err)
   }
 
-  if (!user) {
-    return next({ status: 404, msg: `Could not find user with id ${id}` })
+  if (!course) {
+    return next({ status: 404, msg: `Could not find course with id ${id}` })
   }
-  return res.json(user)
+  return res.json(course)
 }
