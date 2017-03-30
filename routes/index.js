@@ -38,14 +38,20 @@ const routes = {
 
 // Setup Route Bindings
 module.exports = (app) => {
+  app.use((req, res, next) => {
+    Object.assign(req, { data: {} })
+    return next()
+  })
+
   // Views
   app.get('/', routes.views.index)
   app.use('/api', routes.api.index)
 
-  app.use((err, req, res, next) => res
-    .status(err.status || 500)
-    .json(err)
-  )
+  app.use((err, req, res, next) => {
+    return res
+      .status(err.status || 500)
+      .json(err)
+  })
 
   // NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
   // app.get('/protected', middleware.requireUser, routes.views.protected);

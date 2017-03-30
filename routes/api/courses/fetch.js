@@ -26,9 +26,9 @@ async function fetch(req, res, next) {
   const { limit } = req.query
   let courses
   try {
-    courses = await Course.model.find()
+    courses = await Course.model
+      .find()
       .limit(limit || DEFAULT_LIMIT)
-      .exec()
   } catch (err) {
     return next(err)
   }
@@ -51,7 +51,7 @@ async function fetchUserById(req, res, next) {
 
   let course
   try {
-    course = await Course.model.findById(id).exec()
+    course = await Course.model.findById(id)
   } catch (err) {
     return next(err)
   }

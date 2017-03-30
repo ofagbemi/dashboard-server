@@ -1,3 +1,4 @@
+import authMiddleware from '../../../middleware/auth'
 import User from '../../../models/User'
 
 
@@ -5,8 +6,8 @@ const DEFAULT_LIMIT = 50
 
 export default function route(app) {
   app
-    .get('/', validateRoot, fetchUsers)
-    .get('/:id', validateFetchById, fetchUserById)
+    .get('/', authMiddleware, validateRoot, fetchUsers)
+    .get('/:id', authMiddleware, validateFetchById, fetchUserById)
 }
 
 function validateRoot(req, res, next) {
@@ -27,9 +28,9 @@ async function fetchUsers(req, res, next) {
   const { limit } = req.query
   let users
   try {
-    users = await User.model.find()
+    users = await User.model
+      .find()
       .limit(limit || DEFAULT_LIMIT)
-      .exec()
   } catch (err) {
     return next(err)
   }
@@ -52,7 +53,7 @@ async function fetchUserById(req, res, next) {
 
   let user
   try {
-    user = await User.model.findById(id).exec()
+    user = await User.model.findById(id)
   } catch (err) {
     return next(err)
   }

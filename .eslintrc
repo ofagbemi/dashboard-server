@@ -13,6 +13,10 @@
       "exports": "always-multiline",
       "functions": "never"
     }],
+    "new-cap": ["error", {
+      "newIsCap": false,
+      "capIsNew": false
+    }],
     "no-use-before-define": ["error", "nofunc"]
   },
 }
