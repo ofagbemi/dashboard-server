@@ -1,13 +1,13 @@
-const { Router } = require('express')
-
-const User = require('../../models/User')
+import User from '../../../models/User'
 
 
 const DEFAULT_LIMIT = 50
 
-module.exports = Router()
-  .get('/', validateRoot, fetchUsers)
-  .get('/:id', validateFetchById, fetchUserById)
+export default function route(app) {
+  app
+    .get('/', validateRoot, fetchUsers)
+    .get('/:id', validateFetchById, fetchUserById)
+}
 
 function validateRoot(req, res, next) {
   req.checkQuery('limit')
