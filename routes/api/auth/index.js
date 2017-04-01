@@ -35,7 +35,7 @@ async function auth(req, res, next) {
       msg: `Could not find user with email '${email}'`,
     })
   }
-  return user._.password.compare(password, (valid) => {
+  return user._.password.compare(password, (err, valid) => {
     if (valid) return res.json({ token: generateAuthToken(user) })
     return next({
       status: 403,

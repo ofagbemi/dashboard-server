@@ -1,9 +1,8 @@
-import authMiddleware from '../../../middleware/auth'
 import User from '../../../models/User'
 
 
 export default function route(app) {
-  app.post('/', authMiddleware, validateRoot, create)
+  app.post('/', validateRoot, create)
 }
 
 
