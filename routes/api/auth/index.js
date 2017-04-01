@@ -36,7 +36,11 @@ async function auth(req, res, next) {
     })
   }
   return user._.password.compare(password, (err, valid) => {
-    if (valid) return res.json({ token: generateAuthToken(user) })
+    if (valid) {
+      return res.json({
+        access_token: generateAuthToken(user),
+      })
+    }
     return next({
       status: 403,
       msg: `Invalid password for user with email '${email}'`,
