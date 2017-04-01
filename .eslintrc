@@ -1,11 +1,23 @@
 {
-  "extends": "airbnb-base",
+  "extends": ["airbnb-base", "plugin:react/recommended"],
   "env": {
-    "node": true
+    "node": true,
+    "browser": true,
+  },
+  "parser": "babel-eslint",
+  "plugins": ["react"],
+  "globals": {
+    "React": true,
+    "PropTypes": true,
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
   },
   "rules": {
-    "strict": "off",
-    "semi": ["error", "never"],
+    "class-methods-use-this": "off",
     "comma-dangle": ["error", {
       "arrays": "always-multiline",
       "objects": "always-multiline",
@@ -17,6 +29,8 @@
       "newIsCap": false,
       "capIsNew": false
     }],
-    "no-use-before-define": ["error", "nofunc"]
+    "no-use-before-define": ["error", "nofunc"],
+    "strict": "off",
+    "semi": ["error", "never"]
   },
 }

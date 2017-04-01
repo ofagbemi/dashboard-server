@@ -44,8 +44,8 @@ module.exports = (app) => {
   })
 
   // Views
-  app.get('/', routes.views.index)
   app.use('/api', routes.api.index)
+  app.get('*', routes.views.index)
 
   app.use((err, req, res, next) => {
     return res
