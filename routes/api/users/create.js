@@ -1,7 +1,7 @@
-import User from '../../../models/User'
+const User = require('../../../models/User')
 
 
-export default function route(app) {
+module.exports = function route(app) {
   app.post('/', validateRoot, create)
 }
 

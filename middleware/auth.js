@@ -1,12 +1,12 @@
-import promisify from 'promisify-node'
-import jwt from 'jsonwebtoken'
+const promisify = require('promisify-node')
+const jwt = require('jsonwebtoken')
 
-import User from '../models/User'
+const User = require('../models/User')
 
 
 const AUTH_TOKEN_REGEX = /^Bearer (.+)/
 
-export default async function authMiddleware(req, res, next) {
+module.exports = async function authMiddleware(req, res, next) {
   const auth = req.get('Authorization')
   if (!auth) {
     return next({

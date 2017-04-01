@@ -1,7 +1,7 @@
-import { Router } from 'express'
+const { Router } = require('express')
 
-import fetch from './fetch'
-import create from './create'
+const fetch = require('./fetch')
+const create = require('./create')
 
 
 const router = Router()
@@ -9,4 +9,4 @@ const router = Router()
 fetch(router)
 create(router)
 
-export default router
+module.exports = router

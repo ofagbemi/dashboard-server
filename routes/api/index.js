@@ -1,9 +1,9 @@
-import { Router } from 'express'
+const { Router } = require('express')
 
-import authMiddleware from '../../middleware/auth'
-import users from './users'
-import courses from './courses'
-import auth from './auth'
+const authMiddleware = require('../../middleware/auth')
+const users = require('./users')
+const courses = require('./courses')
+const auth = require('./auth')
 
 
 module.exports = Router()

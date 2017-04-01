@@ -1,4 +1,4 @@
-import Course from '../../../models/Course'
+const Course = require('../../../models/Course')
 
 
 const DEFAULT_LIMIT = 20

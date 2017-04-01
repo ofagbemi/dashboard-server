@@ -1,6 +1,6 @@
-import { Router } from 'express'
+const { Router } = require('express')
 
-import fetch from './fetch'
+const fetch = require('./fetch')
 
 const router = Router()
 

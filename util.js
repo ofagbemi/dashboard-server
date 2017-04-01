@@ -1,1 +1,1 @@
-export const DAY_SECONDS = 86400
+exports.DAY_SECONDS = 86400

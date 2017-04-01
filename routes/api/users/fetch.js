@@ -1,10 +1,10 @@
-import authMiddleware from '../../../middleware/auth'
-import User from '../../../models/User'
+const authMiddleware = require('../../../middleware/auth')
+const User = require('../../../models/User')
 
 
 const DEFAULT_LIMIT = 50
 
-export default function route(app) {
+module.exports = function route(app) {
   app
     .get('/', authMiddleware, validateRoot, fetchUsers)
     .get('/:id', authMiddleware, validateFetchById, fetchUserById)

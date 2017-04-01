@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken'
-import { Router } from 'express'
+const jwt = require('jsonwebtoken')
+const { Router } = require('express')
 
-import { DAY_SECONDS } from '../../../util'
-import User from '../../../models/User'
+const { DAY_SECONDS } = require('../../../util')
+const User = require('../../../models/User')
 
 
 const router = Router()
@@ -56,4 +56,4 @@ function generateAuthToken(user) {
   )
 }
 
-export default router
+module.exports = router
