@@ -1,16 +1,17 @@
 import { Map } from 'immutable'
-import { handleActions } from 'redux-actions'
+import { handleActions, createAction } from 'redux-actions'
 
 
-export const ISSUE_LOGIN = 'sc/ISSUE_LOGIN'
+const ISSUE_LOGIN = 'sc/ISSUE_LOGIN'
 const RECEIVE_LOGIN = 'sc/RECEIVE_LOGIN'
 
+export const issueLogin = createAction(ISSUE_LOGIN)
+export const receiveLogin = createAction(RECEIVE_LOGIN)
+
 export default handleActions({
-  [RECEIVE_LOGIN]: {
+  [receiveLogin]: {
     next: (state, action) => (
-      state.merge({
-        ...action.payload,
-      })
+      state.merge(action.payload)
     ),
   },
 }, Map())
