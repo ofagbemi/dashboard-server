@@ -1,10 +1,12 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Login from './Login'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Login from './auth/components/Login'
 
 
 const Routes = () => (
   <Router>
-    <Route path="/login" component={Login} />
+    <Switch>
+      <Route path={/\/(login|register)$/} component={Login} />
+    </Switch>
   </Router>
 )
 

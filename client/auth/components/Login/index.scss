@@ -1,0 +1,13 @@
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  h2 {
+    margin-bottom: 48px;
+
+    .street-code {
+      color: $dodger-blue;
+    }
+  }
+}

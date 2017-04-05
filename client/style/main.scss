@@ -1,0 +1,104 @@
+@import './reset';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: $regent-grey;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+}
+
+a {
+  color: $dodger-blue;
+  text-decoration: none;
+}
+
+h2 {
+  color: $street-code-black;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.main-container {
+  padding-top: 100px;
+}
+
+label {
+  display: block;
+  margin: 0 0 44px;
+
+  p {
+    margin: 0 0 20px;
+  }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+  background: $athens-grey;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: $regent-grey;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  height: 50px;
+  letter-spacing: 0.51px;
+  outline: 0;
+  padding: 0 21px;
+  transition: background 300ms, border 300ms, color 300ms;
+  width: 400px;
+
+  &:focus {
+    background: transparent;
+    border: 1px solid $dodger-blue;
+    color: $street-code-black;
+  }
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+
+  button,
+  .btn {
+    margin-right: 18px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+}
+
+button,
+.btn {
+  align-items: center;
+  background: none;
+  border: 1px solid $dodger-blue;
+  border-radius: 4px;
+  color: $dodger-blue;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: inherit;
+  font-weight: 500;
+  height: 45px;
+  letter-spacing: 0.4px;
+  padding: 0 29px;
+  text-decoration: none;
+  transition: background-color 300ms, box-shadow 300ms, color 300ms;
+
+  &.primary {
+    background-color: $dodger-blue;
+    color: white;
+  }
+
+  &:hover {
+    @extend .primary;
+    box-shadow: 0 3px 8px $azure-shadow;
+  }
+}

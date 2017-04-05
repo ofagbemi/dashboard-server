@@ -15,7 +15,9 @@ const commonCSSLoaders = [
   {
     loader: 'sass-resources-loader',
     options: {
-      resources: ['./client/style/export.scss'],
+      resources: [
+        './client/style/variables.scss',
+      ],
     },
   },
 ]

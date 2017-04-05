@@ -13,6 +13,7 @@ import reducer from './redux'
 import saga from './saga'
 import Routes from './Routes'
 import App from './App'
+import './style/main.scss'
 
 
 const sagaMiddleware = createSagaMiddleware()
