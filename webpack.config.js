@@ -4,6 +4,22 @@ const autoprefixer = require('autoprefixer')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 
+const commonCSSLoaders = [
+  {
+    loader: 'postcss-loader',
+    options: {
+      plugins: [autoprefixer({ browsers: ['last 2 versions'] })],
+    },
+  },
+  'sass-loader?outputStyle=expanded',
+  {
+    loader: 'sass-resources-loader',
+    options: {
+      resources: ['./client/style/export.scss'],
+    },
+  },
+]
+
 module.exports = {
   entry: {
     app: './client/index.js',
@@ -18,7 +34,7 @@ module.exports = {
     filename: 'bundle.js',
   },
   plugins: [
-    new ExtractTextPlugin({ filename: 'main.css', allChunks: true }),
+    new ExtractTextPlugin({ filename: 'main.css' }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.bundle.js',
@@ -33,6 +49,7 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
+        exclude: /style\//g,
         use: ExtractTextPlugin.extract({
           use: [
             {
@@ -43,19 +60,20 @@ module.exports = {
                 localIdentName: '[name]__[local]___[hash:base64:5]',
               },
             },
+            ...commonCSSLoaders,
+          ],
+        }),
+      },
+      {
+        test: /\.s?css$/,
+        include: /style\//g,
+        use: ExtractTextPlugin.extract({
+          use: [
             {
-              loader: 'postcss-loader',
-              options: {
-                plugins: [autoprefixer({ browsers: ['last 2 versions'] })],
-              },
+              loader: 'css-loader',
+              options: {},
             },
-            'sass-loader?outputStyle=expanded',
-            {
-              loader: 'sass-resources-loader',
-              options: {
-                resources: ['./client/style/export.scss'],
-              },
-            },
+            ...commonCSSLoaders,
           ],
         }),
       },
